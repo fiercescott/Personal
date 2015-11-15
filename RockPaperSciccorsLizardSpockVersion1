@@ -1,0 +1,203 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+//beginning of program
+int main()
+{
+    //declaration of variables
+    int playerChoice;
+    int opponentChoice;
+    int numberOfGames;
+    int wins;
+    int loses;
+    int draws;
+    int i;
+
+    //initialiazation of variables
+    playerChoice = 0;
+    opponentChoice = 0;
+    numberOfGames = 0;
+    wins = 0;
+    loses = 0;
+    draws = 0;
+    i = 0;
+
+    //asking the player to input the desired amount of games
+    printf("How many Games would you like to play?");
+    scanf("%d", &numberOfGames);
+
+    //game instructions
+    printf("Welcome to Rock-Paper-Scissors-Lizard-Spock.");
+    printf("\n Rock = 1");
+    printf("\n Paper = 2");
+    printf("\n Scissors = 3");
+    printf("\n Lizard = 4");
+    printf("\n Spock = 5");
+
+    //running the game per number of times the player chose
+    for(i = 0; i < numberOfGames; i++)
+    {
+        //player enters his choice
+        printf("\n Please enter your choice.");
+        scanf("%d", &playerChoice);
+
+        //computer generates its choice
+        srand(time(NULL));
+        opponentChoice = (rand() % 5) +1;
+
+        //calculating who won if the player chose Rock
+        if(playerChoice == 1)
+        {
+            switch(opponentChoice)
+            {
+                case 1:
+                    printf("\nRock ties Rock. Draw.");
+                    draws = draws + 1;
+                    break;
+                case 2:
+                    printf("\nPaper covers Rock. You Lose.");
+                    loses = loses + 1;
+                    break;
+                case 3:
+                    printf("\nRock crushes Scissors. You Win");
+                    wins = wins + 1;
+                    break;
+                case 4:
+                    printf("\nRock crushes Lizard. You Win");
+                    wins = wins + 1;
+                    break;
+                case 5:
+                    printf("\nSpock vaporizes Rock. You lose.");
+                    loses = loses + 1;
+                    break;
+            }
+        }
+
+        //calculating who won if the player chose Paper
+        else if(playerChoice == 2)
+        {
+            switch(opponentChoice)
+            {
+                case 1:
+                    printf("\nPaper covers Rock. You Win.");
+                    wins = wins + 1;
+                    break;
+                case 2:
+                    printf("\nPaper ties Paper. Draw.");
+                    draws = draws + 1;
+                    break;
+                case 3:
+                    printf("\nScissors cuts Paper. You Win.");
+                    wins = wins + 1;
+                    break;
+                case 4:
+                    printf("\nLizard eats Paper. You Lose.");
+                    loses = loses + 1;
+                    break;
+                case 5:
+                    printf("\nPaper disproves Spock. You Win.");
+                    wins = wins + 1;
+                    break;
+            }
+        }
+
+        //calculating who won if the player chose Scissors
+        else if(playerChoice == 3)
+        {
+            switch(opponentChoice)
+            {
+                case 1:
+                    printf("\nRock crushes Scissors. You Lose.");
+                    loses = loses + 1;
+                    break;
+                case 2:
+                    printf("\nScissors cuts Paper. You Win.");
+                    wins = wins + 1;
+                    break;
+                case 3:
+                    printf("\nScissors ties Scissors. Draw.");
+                    draws = draws + 1;
+                    break;
+                case 4:
+                    printf("\nScissors decapitates Lizard. You Win.");
+                    wins = wins + 1;
+                    break;
+                case 5:
+                    printf("\nSpock smashes Scissors. You Lose.");
+                    loses = loses + 1;
+                    break;
+            }
+        }
+
+        //calculating who won if the player chose Lizard
+        else if(playerChoice == 4)
+        {
+            switch(opponentChoice)
+            {
+                case 1:
+                    printf("\nRock smashes Lizard. You Lose.");
+                    loses = loses + 1;
+                    break;
+                case 2:
+                    printf("\nScissors decapitates Lizard. You Lose.");
+                    loses = loses + 1;
+                    break;
+                case 3:
+                    printf("\nLizard eats Paper. You Win.");
+                    wins = wins + 1;
+                    break;
+                case 4:
+                    printf("\nLizard ties Lizard. Draw.");
+                    draws = draws + 1;
+                    break;
+                case 5:
+                    printf("\nLizard poisons Spock. You Win.");
+                    wins = wins + 1;
+                    break;
+            }
+        }
+
+        //calculating who won if the player chose Spock
+        else if(playerChoice == 5)
+        {
+            switch(opponentChoice)
+            {
+                case 1:
+                    printf("\nSpock vaporizes Rock. You Win.");
+                    wins = wins + 1;
+                    break;
+                case 2:
+                    printf("\nSpock smashes Scissors. You Win.");
+                    wins = wins + 1;
+                    break;
+                case 3:
+                    printf("\nPaper disproves Spock. You Lose.");
+                    loses = loses + 1;
+                    break;
+                case 4:
+                    printf("\nLizard poisons Spock. You Lose.");
+                    loses = loses + 1;
+                    break;
+                case 5:
+                    printf("\nSpock ties Spock. Draw.");
+                    draws = draws + 1;
+                    break;
+            }
+        }
+
+
+        //error countermeasures
+        else
+        {
+            printf("\nError. Please input proper value.");
+            numberOfGames = numberOfGames + 1;
+            playerChoice = 0;
+        }
+    }
+    //displaying the results
+    printf("\nYou won %d games", wins);
+    printf("\nYou lost %d games", loses);
+    printf("\nYou had %d draws", draws);
+
+}
